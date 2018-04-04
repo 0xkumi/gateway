@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "staging-crypto-exchange",
+  "private_key_id": "fd221c55d097e7089ef3cb6d774adbb12a04c719",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEugIBADANBgkqhkiG9w0BAQEFAASCBKQwggSgAgEAAoIBAQCdt9iwCYrlvkra\nS06BXoVBRjEzkOAFHTMYtCuccQD0mtpiPqLhc5ubjwetbteEPuQidK3IUlDxnKNA\nLyNT4uY7jTYrsgBDYDArn5MjFy8BRgDE29ggrFPDpcWMiuj74zChS1bF6icND7ch\n02Z55NT2zmR/G+dqm+dA+i/qNhOKZYseqr6A8YRCjNBdnn3bwb/udsQ5hUUgel3c\nJiQPT6k3+UZRAFPONynACJP5K1AjHsdE5I0iNq/v+isLDqIxoiXotRPJ3Lnl4+EK\nzBXAvIYG3yqoq3eOAJ+Zve23H50kKZnCVZvy1IKoO3877WSXM7FySvwTX0fabMtO\nP8NB4B9lAgMBAAECgf8wRiexcPEk8ywapM2ZgkKQXLTXJgDZRrtKwiQE0JHVumuL\nOOnrF9MJJYdq6bkyHKAlEEhp9eysB1fwhDPwi3BapV5KuGfJ7nA9xWMxkUJ2fL/k\nE69u4wcJpHzlLDG2DArELzjgEgJPobai2rZwvWMEKAOamya5+tmWrmr8DkgRbz7G\nMlBbhMHAGtXly6k+7tkLDn7u/wyhrFuhsEOM0HDyLu+yGdNJgTqUumlFtAAeeS5l\nQcq/B72a0ydQjSaDEel5yhPEfFu1MeRAgMUJ2oCQ/8p2QhCo1FFt/0SudZXOsAUH\nWmQdCu9qUz8YFjKxd1fx/z+kPqzMCef3iM06jPsCgYEA11h9uT9ni/S+qlt8TPn/\nVL71SdGv5YrLYrfDNBL5D1U4q2RAB1r5V3yfQSJXfS0wsRscAuMZ3l3T16rn8noQ\n8FwDIU9UUWUUD+3SQ+wywZsucqrWzvZlTZIV3nsaySJXVHKhZeTWID914to7LJo8\nrlbPiMpVmaVMfqyf1AUvXl8CgYEAu35BvEUet0AFpEADbaeT6BzqXURjUHcV7ccf\nXsEKyVd+ex2i03eHvtjnmVBFDD/CKqkrG2Nl54heMGHQsHGJwabfvy+mkWjVyvxq\ndq7MJJhCGpkXT/MyYUkioPhMxDNWODyEZnhj+NUiqT88lR5/4GRYgyr0k7Ngvn6U\nyfkH0LsCgYBLgKlEBCkH9x3KmRzx2E1fpzxVT4G+l3VL/WYhoe1VJOojnZide5Yk\nyHsF2UaXivqhfgHKOVnej0MxQKjmaUn7HCe0zB2iFDB+jUHFstDw9LnKVn/OPLG0\nCt5EDSGNF89Kuo5ALYWt9NIeYamRr9pKvgEx0s9EeaJiX6ACNHcxPQKBgHzsSLw6\niZarb5bal+4t45yZ94WhFVL9pXzCWaJ2mMtCIqHBQ0YGtElymA1MsFTS/noSMQiU\nl8dG0wsFgViurYx7tUTbaO4lnZ0bxYvCN36CfDjgm+nHLmAnrIz4I53uXpolqEnm\nGSYoTGncGm943NcTxO3QZxkqQWFrUZOo+44VAoGAJfevdu4FHt/YMw4CFEDA2id1\n6MUNedJo/MwdP3uq//ZfLQ1l5gfK4PIwg7Bn9BQvjNXNYrWMKNqw34Klg+94obV4\nEr8TCWjikHpYDTXQoz3q3DkoonZsUAm1h7HIltnlvCtVa5m1dH2hy1zXn2UjMpD5\naym/7mCfQ+3+YJwz7X8=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-8w5sq@staging-crypto-exchange.iam.gserviceaccount.com",
+  "client_id": "103946631812536843798",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-8w5sq%40staging-crypto-exchange.iam.gserviceaccount.com"
+}
