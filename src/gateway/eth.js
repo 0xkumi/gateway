@@ -2,7 +2,7 @@ const Web3 = require('web3')
 const Common = require("../libs/common")
 var rpc_server = __Config.ETH_RPC
 var web3 = new Web3(new Web3.providers.HttpProvider(rpc_server))
-var WalletDB = require("../models/wallet")
+var WalletDB = require("../models/adapter").Wallet()
 
 exports = module.exports = {
     createWallet: createWallet,
@@ -13,23 +13,10 @@ exports = module.exports = {
 }
 
 async function createWallet() {
-    return new Promise(async function(resolve){
-        var newAccount = await web3.eth.accounts.create()
-        //write to database
-        var newWallet = new WalletDB({
-            type: "eth",
-            address: newAccount.address,
-            secret: Common.encryptData(newAccount.privateKey),
-            balance: "0"
-        })
-        newWallet.save(function(err) {
-            if (err) {
-                console.log(err)
-                return reject(new Error("Cannot access to database"))
-            }
-            resolve(newAccount)
-        })
-    })
+    var newAccount = await web3.eth.accounts.create()
+    let newWallet = await WalletDB.insert("eth", newAccount.address, Common.encryptData(newAccount.privateKey))
+    var {address, balance} = newWallet
+    return { address, balance }
 }
 
 async function listWallet(from = 0, size = 10) {
