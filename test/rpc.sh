@@ -1,0 +1,1 @@
+curl --data-binary '{"jsonrpc":"2.0","id":"curltext","method":"getdifficulty","params":[]}' -H 'content-type:text/plain;' http://bitcoin:local321@127.0.0.1:8332/
