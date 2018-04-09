@@ -1,6 +1,7 @@
 /**
  * Scan deposit from bitcoin network.
- * Flow: list unspent output transaction, then check their confirmation. If confirmation < 2 -> unconfirm, else >= 2-> confirm (notify)
+ * Flow: list unspent output transaction, store to database
+ * Note: If confirmation < 2 -> unconfirm, else >= 2-> confirm (notify)
  */
 
 const WalletDB = require("../models/adapter").Wallet
@@ -26,20 +27,19 @@ async function scan() {
         let confirmations = unspent.confirmations
         let txid = unspent.txid
 
-        let query = {txid, address, vout}
+        let query = {txid, vout}
         let data = {txid, address, vout, amount, confirmations} 
         let result = await DepositDB.update(query, data, true)
         console.log(result)
 
-        //TODO: notify thrid party
-
-
+        if (confirmations >= 2) {
+            //TODO: notify thrid party
+        }
 
     }
 
     //after the first run, reduce MAX_CONFIRM => reduce database load
     MAX_CONFIRM = 10
-
     setTimeout(scan,1000)
 }
 

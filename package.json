@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "devStat": "cloc . --exclude-dir=node_modules,logs,public",
+    "test": "bash scripts/test.sh"
   },
   "author": "",
   "license": "ISC",
