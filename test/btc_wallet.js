@@ -37,6 +37,9 @@ async function sendFrom(fromAddress, toAddressArr, value, txFee) {
     
 }
 
+
+
+//fee=in*180+out*34+10 +- in
 async function estimateFee(fromAddress, toObj, privateKey){
     var sendTotal = 0;
     for (var k in toObj){
