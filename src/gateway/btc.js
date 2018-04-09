@@ -1,8 +1,12 @@
+//scan deposit
+require('../scanDeposit/btc')
+
 const bitcoinjs = require('bitcoinjs-lib')
 const Common = require("../libs/common")
 const Client = require("bitcoin-core")
 const bs58check = require('bs58check')
-const WalletDB = require("../models/adapter").Wallet()
+const WalletDB = require("../models/adapter").Wallet
+const DepositDB = require("../models/adapter").Deposit
 
 const rpc = Common.parseRpcUrl(__Config.BTC_RPC)
 const client = new Client({ host: rpc.host, port: rpc.port, username: rpc.username, password: rpc.password })
@@ -11,7 +15,8 @@ exports = module.exports = {
     createWallet: createWallet,
     getWallet: getWallet,
     transferBalance: transferBalance,
-    checkBalance: checkBalance
+    checkBalance: checkBalance,
+    checkDeposit: checkDeposit
 }
 
 async function createWallet() {
@@ -43,7 +48,7 @@ async function getWallet(address) {
 async function transferBalance(from, outputs, fee) { 
 
     async function findUtxoForTransfer(address, value) {
-        var utxo = await client.listUnspent(1, null, [address])
+        var utxo = await client.listUnspent(2, null, [address])
         let sum = 0;
         let result = []
         for (var i in utxo) {
@@ -100,7 +105,7 @@ async function transferBalance(from, outputs, fee) {
     
 }
 
-async function checkBalance(address, confirm = 1) {
+async function checkBalance(address, confirm = 2) {
     var utxo = await client.listUnspent(confirm, null, [address])
     let sum = 0;
     for (var i in utxo) {
@@ -109,3 +114,6 @@ async function checkBalance(address, confirm = 1) {
     return sum
 }
 
+async function checkDeposit(address){
+    return await DepositDB.getByAddress(address)
+}

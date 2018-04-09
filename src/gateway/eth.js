@@ -2,7 +2,7 @@ const Web3 = require('web3')
 const Common = require("../libs/common")
 var rpc_server = __Config.ETH_RPC
 var web3 = new Web3(new Web3.providers.HttpProvider(rpc_server))
-var WalletDB = require("../models/adapter").Wallet()
+var WalletDB = require("../models/adapter").Wallet
 
 exports = module.exports = {
     createWallet: createWallet,

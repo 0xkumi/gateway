@@ -26,8 +26,11 @@ exports = module.exports = function (app, router) {
 
     router.get("/coin/btc/wallet/create", createWallet);
     router.post("/coin/btc/wallet/get", getWallet);
-    router.post("/coin/btc/wallet/checkBalance", checkBalance);
+
+    router.post("/coin/btc/balance/check", checkBalance);
     router.post("/coin/btc/balance/transfer", transferBalance);
+    
+    router.post("/coin/btc/deposit/check", checkDeposit);
 
     router.all("/*", function(req, res){
         console.log(req.body)
@@ -83,6 +86,21 @@ exports = module.exports = function (app, router) {
             const gateway = require(path)
             
             const data = await gateway.transferBalance(req.body.from, req.body.outputs, req.body.fee)
+            return res.json(Common.createJsonReply(0, data))
+        } catch (err) {
+            console.log(err)
+            return res.json(Common.createJsonReply(-1, "Internal Service Error"))
+        }
+    }
+
+    async function checkDeposit(req, res) {
+        try {
+            const { type, path } = getGateWay(req.url)
+            //if cannot get support crypto
+            if (!path) return res.json(Common.createJsonReply(-1, "Cannot find support crypto"))
+            const gateway = require(path)
+            
+            const data = await gateway.checkDeposit(req.body.address)
             return res.json(Common.createJsonReply(0, data))
         } catch (err) {
             console.log(err)

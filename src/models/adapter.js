@@ -1,21 +1,20 @@
-module.exports = {
-    Wallet: function(){
-        switch (__Config.DB) {
-            case "MONGO":
-                console.log("Use mongo database ...")
-                return require("./mongo/wallet")
-            case "FIRESTORE":
-                console.log("Use firestore database ...")
-            default:
-                return require("./firebase/wallet")
-        }
-    }
+var Wallet
+var Deposit
+
+switch (__Config.DB) {
+    case "MONGO":
+        console.log("Use mongo database ...")
+        Wallet = require("./mongo/wallet")
+        Deposit = require("./mongo/deposit")
+        break;
+    case "FIRESTORE":
+        console.log("Use firestore database ...")
+    default:
+        Wallet = require("./firebase/wallet")
+        Deposit = require("./mongo/deposit")
 }
 
-/**
- * Wallet
- * createWallet
- * getWallet
- * getBalance
- * <listWallet>
-*/
+module.exports = {
+    Wallet: Wallet,
+    Deposit: Deposit
+}

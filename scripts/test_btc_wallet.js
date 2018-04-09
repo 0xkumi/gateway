@@ -9,13 +9,14 @@ var client
 
 //transaction: 50c66704d5254267de673027f256aa09a1cbe521c10d4d70925060fb2b8ec99c
 async function start(){
-    client = await new Client({ host: "127.0.0.1", port: 18443, username: "test", password: "pass" })
+    client = await new Client({ host: "173.212.209.107", port: 18443, username: "test", password: "pass" })
     
     // console.log(await client.generateToAddress(1, "mq723bSt7PEBvaf7oe35Ss6FvgrkHSYBFR"))
 
-    // await client.generate(110)
+    await client.generate(1)
 
-    // var utxo = await client.listUnspent(1, null, ["mfgPjE8AKrvXg7etbkPtp4BdqRwd7LM24T"])
+    var utxo = await client.listUnspent(1, null)
+    console.log(utxo)
     // utxo.map(function(x){
     //     console.log(x.confirmations, x.amount)
     // })
@@ -24,7 +25,7 @@ async function start(){
     // console.log(await client.importPrivKey(createPrivateKeyInWIF(),'tester6'))
     
     // console.log(await client.getAddressesByAccount("tester1"))
-    console.log(await client.listAccounts())
+    // console.log(await client.listAccounts())
     
     // estimateFee("mmvhm8KssEvxErP8FRCvUJHUnQWRVCoiaL", { "mmh2moWwkYdQN7ka9BZmD3ufmm8aFfs7d9": 1, "mmvhm8KssEvxErP8FRCvUJHUnQWRVCoiaL": 48.9999})
 }
