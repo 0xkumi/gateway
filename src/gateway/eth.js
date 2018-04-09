@@ -6,7 +6,6 @@ var WalletDB = require("../models/adapter").Wallet()
 
 exports = module.exports = {
     createWallet: createWallet,
-    listWallet: listWallet,
     getWallet: getWallet,
     transferBalance: transferBalance,
     checkBalance: checkBalance
@@ -14,43 +13,35 @@ exports = module.exports = {
 
 async function createWallet() {
     var newAccount = await web3.eth.accounts.create()
-    let newWallet = await WalletDB.insert("eth", newAccount.address, Common.encryptData(newAccount.privateKey))
-    var {address, balance} = newWallet
-    return { address, balance }
-}
-
-async function listWallet(from = 0, size = 10) {
-    return new Promise(function (resolve) {
-        WalletDB.count().exec(function (err, total){
-            if (err) {
-                console.log(err)
-                return reject(new Error("Cannot access to database"))
-            }
-            WalletDB.find({}).skip(from).limit(size).lean().exec(function (err, data) {
-                if (err) {
-                    console.log(err)
-                    return reject(new Error("Cannot access to database"))
-                }
-                resolve({wallets: data, total: total})
-            })
-        })
-    })
+    await WalletDB.insert("eth", newAccount.address, Common.encryptData(newAccount.privateKey))
+    return newAccount.address
 }
 
 async function getWallet(address) {
-    return new Promise(function (resolve) {
-        WalletDB.findOne({address: address}).exec(function (err, data) {
-            if (err) {
-                console.log(err)
-                return reject(new Error("Cannot access to database"))
-            }
-            resolve(data)
-        })
-    })
+    return await WalletDB.get("eth", address)
 }
 
 async function transferBalance(from, to, value) {
-    
+
+    // var rawTx = {
+    //     gas: 21000, 
+    //     gasPrice: ,
+    //     to: to,
+    //     value: web3.utils.toWei(value, 'ether'),
+    //     nonce: await web3.eth.getTransactionCount(newAccount.address), //TODO: 
+    //     chainId: await web3.shh.net.getId()
+    // }
+
+    // console.log(rawTx)
+
+
+    // const sign = await  newAccount.signTransaction(rawTx)
+    // var sign = await web3.eth.accounts.signTransaction(rawTx, newAccount.privateKey)
+
+    // web3.eth.sendSignedTransaction(sign.rawTransaction)
+    // .on('receipt', function(receipt){
+    //     getBalance(newAccount.address)
+    // })
 }
 
 async function checkBalance(addr) {

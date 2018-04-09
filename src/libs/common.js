@@ -7,7 +7,6 @@ module.exports = {
         return {status: "ok", data: data}
     },
     encryptData: function (str) {
-        console.log(str, __Config.SECRET)
         var cipher = crypto.createCipher("aes-128-cbc", __Config.SECRET)
         var crypted = cipher.update(str, 'utf-8', 'hex')
         crypted += cipher.final('hex');
@@ -19,4 +18,17 @@ module.exports = {
         dec += decipher.final('utf-8');
         return dec;
     },
+    parseRpcUrl: function(url) {
+        var regex  = /\/\/(.*):(.*)@([0-9\.]+):([0-9]+)/
+        var match = regex.exec(url)
+        if (match){
+            return {
+                username: match[1],
+                password: match[2],
+                host: match[3],
+                port: match[4]
+            }
+        }
+        return null
+    }
 }

@@ -9,8 +9,13 @@ trap cleanup EXIT
 cleanup() {
   # Kill the testrpc instance that we started (if we started one and if it's still running).
   if [ -n "$ganachePID" ] && ps -p $ganachePID > /dev/null; then
-    echo "Kill ganachi $serverPID"
+    echo "Kill ganachi $ganachePID"
     kill -9 $ganachePID
+  fi
+
+  if [ -n "$bitcoindPID" ] && ps -p $bitcoindPID > /dev/null; then
+    echo "Kill ganachi $bitcoindPID"
+    kill -9 $bitcoindPID
   fi
 
   if [ -n "$serverPID" ] && ps -p $serverPID > /dev/null; then
@@ -30,6 +35,10 @@ docker run -d -p 27017:27017 --name test_mongo mongo
 echo "Start ganache ..."
 ganache-cli --gasLimit 0xfffffffffff > logs/test_ganache.log &
 ganachePID=$!
+
+echo "Start bitcoind ..."
+bitcoind -regtest -printtoconsole -server -rpcuser=test -rpcpassword=pass> logs/test_bitcoind.log &
+bitcoindPID=$!
 
 sleep 2s
 

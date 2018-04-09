@@ -1,5 +1,5 @@
 require("../config")
-
+console.log(__Config)
 const express = require('express');
 const app = express();
 

@@ -18,9 +18,7 @@ exports = module.exports = {
     insert: async function (type, address, secret, balance = "0") {
         if (!type || !address || !secret) return null;
         let obj = await exports.get(address)
-        console.log(obj)
         if (obj) return null;
-        console.log(address, obj)
         let newDoc = Wallet.doc(address)
         let data = {
             type: type,
@@ -55,11 +53,3 @@ exports = module.exports = {
     }
 };
 
-
-! async function(){
-    console.log(new Date())
-    await exports.list()
-    console.log(new Date())
-    await exports.list()
-    console.log(new Date())
-}()
