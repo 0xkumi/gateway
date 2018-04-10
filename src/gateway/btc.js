@@ -46,7 +46,7 @@ async function getWallet(address) {
 }
 
 async function transferBalance(from, outputs, fee) { 
-
+    //do something
     async function findUtxoForTransfer(address, value) {
         var utxo = await client.listUnspent(2, null, [address])
         let sum = 0;
