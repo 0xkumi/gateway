@@ -16,9 +16,9 @@ var MIN_CONFIRM = 1
 var MAX_CONFIRM = 144 // ~1 day
 
 async function scan() {
-    
+
     var utxos = await client.listUnspent(MIN_CONFIRM, MAX_CONFIRM)
-    
+
     for (var i  in utxos){
         let unspent = utxos[i]
         let address = unspent.address
@@ -28,9 +28,9 @@ async function scan() {
         let txid = unspent.txid
 
         let query = {txid, vout}
-        let data = {txid, address, vout, amount, confirmations} 
+        let data = {txid, address, vout, amount, confirmations}
         let result = await DepositDB.update(query, data, true)
-        console.log(result)
+        //console.log(result)
 
         if (confirmations >= 2) {
             //TODO: notify thrid party
